@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
-# 2017-3-6 by zhaopeng
+
 
 import mysql.connector
 import datetime
 
-# Connect to the database
 class SpiderMysql:
     conn = None
     database_host = "192.168.1.19"
@@ -21,16 +20,12 @@ class SpiderMysql:
     def select(self, sql_select):
         if self.conn is None:
             return None
-        #cursor = self.conn.cursor()
-        # Read a single record
         self.cursor.execute(sql_select)
         return self.cursor.fetchone()
 
     def selectall(self, sql_select):
         if self.conn is None:
             return None
-        #cursor = self.conn.cursor()
-        # Read a single record
         self.cursor.execute(sql_select)
         return self.cursor.fetchall()
 
@@ -66,8 +61,6 @@ def SelectTask():
             table = SpiderMysql("spider")
             table.updata("update task set status=%s where lasting=%s", ("not start", 1))
             table.close()
-            #result = table.selectall("SELECT * FROM `task` WHERE `lasting` = 1 ORDER BY priority DESC")
-            #table.close()
         return result
     except mysql.connector.Error as e:
         print("{}".format(e))
@@ -162,39 +155,3 @@ def InsertSiteResult(result):
     except:
         table.close()
         return False
-
-
-
-'''
-
-print(SelectSiteTask())
-url = (2, 'http://aaa.aaa.aaa/aaa/aaa/aaaa/aaa')
-url1 = (3, 'http://bbb.aaa.aaa/aaa/aaa/aaaa/nnn')
-xxx = InsertUrl(url1)
-if xxx is True:
-    print("insert successed!")
-'''
-'''
-table = SpiderMysql("spider")
-result = table.selectall("SELECT DISTINCT `task_id`, `task_url` FROM `url` ")
-table.close()
-for xx in result:
-    print(xx)
-'''
-'''
-table = SpiderMysql("spider")
-result = table.selectall("SELECT * FROM `url` WHERE `task_url` LIKE 'http://www.baidu.com/link?url=c3xWz9JrbbFFWQ_yTgqmTkFA2hjPhRHsQc-xpFNa-tI-nbWKVgohJ6jyCqB3XnN3IBqNrKs1CVt-PXEiT6fP-a' ")
-table.close()
-for xx in result:
-    print(xx)
-'''
-'''
-table = SpiderMysql("spider")
-result = table.select("SELECT * FROM `url` WHERE `task_id` = %d AND `task_url` LIKE '%s'" % (1, 'http://www.baidu.com/link?url=c3xWz9JrbbFFWQ_yTgqmTkFA2hjPhRHsQc-xpFNa-tI-nbWKVgohJ6jyCqB3XnN3IBqNrKs1CVt-PXEiT6fP-a'))
-table.close()
-print(result)
-'''
-'''
-result = ('http://adfasdfasdf', '{"content": "bbbbbbbbbbbb", "date": "dadadadadadaad", "title": "aaaaaaaaaaaaaaa", "url": "xxxxxxxxxxxx"}')
-InsertResult(result)
-'''
