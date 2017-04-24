@@ -1,7 +1,5 @@
 # -*- coding: utf-8 -*-
-#  2017-03-06  by zhaopeng
-#  2017-03-13  by zhaopeng
-#import SpiderTaskMysql
+
 import sys
 from urllib.request import quote
 from urllib.request import pathname2url
@@ -110,13 +108,3 @@ def MakeSiteUrl(result):
     root_url = root_url.replace('.', '\.')
     re_string = '.*' + root_url + '/.*'
     return re_string
-
-
-'''
-
-result = SpiderTaskMysql.SelectTask()
-print (result)
-xxx = [(1, 'not start', 3, 0, datetime.date(2017, 2, 1), datetime.date(2017, 3, 6), 0, '韩国+萨德', '', '', '', '', 1, '')]
-
-print(MakeUrl(result))
-'''
