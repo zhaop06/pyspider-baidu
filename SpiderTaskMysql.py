@@ -6,9 +6,9 @@ import datetime
 
 class SpiderMysql:
     conn = None
-    database_host = "192.168.1.19"
-    database_user = "pyspider"
-    database_pwd = "viewsonic"
+    database_host = "@@@@"
+    database_user = "@@@@"
+    database_pwd = "@@@@"
     def __init__(self, db):
         self.conn = mysql.connector.connect(user=self.database_user, password=self.database_pwd,
                                             host=self.database_host, database=db)
